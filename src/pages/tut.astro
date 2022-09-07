@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro"; 
+const name = "Astro";
+const style = "purple";
+const res = await fetch("https://jsonplaceholder.typicode.com/users?_limit=10");
+// const users = ["Astro", "Remy", "Kelsey", "Brad"]
+const users = await res.json();
+const visible = true;
+---
+
+<Layout>
+	<h1 class={style}>Hello {name}!</h1>
+	<ul>
+		{users.map(user => <li>{user.name}</li>)}
+	</ul>
+
+	{visible ? <p>I am visible</p> : <p>I am not visible</p>}
+</Layout>
+
+<style>
+	h1 {
+		color: red;
+	}
+
+	.purple {
+		color: purple;
+	}
+
+</style>
